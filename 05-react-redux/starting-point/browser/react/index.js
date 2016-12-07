@@ -10,12 +10,13 @@ import NewPlaylistContainer from './containers/NewPlaylistContainer';
 import PlaylistContainer from './containers/PlaylistContainer';
 import LyricsContainer from './containers/LyricsContainer';
 import StationsContainer from './containers/StationsContainer';
+import StationContainer from './containers/StationContainer';
 
 
 import App from './components/App';
 import Albums from './components/Albums';
 import Songs from './components/Songs';
-// import Stations from './components/Stations';
+import Station from './components/Station';
 
 import { Provider } from 'react-redux';
 import axios from 'axios';
@@ -64,6 +65,7 @@ ReactDOM.render(
       <Route path="/" component={App} onEnter={onAppEnter}>
         <Route path="/albums" component={AlbumsContainer}/>
         <Route path="/stations" component={StationsContainer} onEnter={onStationsEnter}/>
+        <Route path="/stations/:genreName" component={StationContainer} onEnter={onStationsEnter} />
         <Route path="/albums/:albumId" component={AlbumContainer} onEnter={onAlbumEnter}/>
         <Route path="/artists" component={FilterableArtistsContainer}/>
         <Route path="/artists/:artistId" component={ArtistContainer} onEnter={onArtistEnter}>
