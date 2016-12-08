@@ -17,7 +17,7 @@ export default function (props) {
         Object.keys(stations).map(genre => {
           return (
             <div className="list-group-item" key={genre}>
-              <Link to={`/stations/${genre}`}>{genre}</Link>
+              <Link to={`/stations/${encodeURIComponent(genre)}`}>{genre}</Link>
             </div>
           );
         })

@@ -2,8 +2,11 @@
   box-sizing: border-box; }
 
 body {
-  background: #222222;
-  padding-bottom: 56px; }
+  background-image: url('supreme.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 56px; 
+}
 
 #main {
   padding-left: 0; }

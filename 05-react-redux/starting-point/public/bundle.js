@@ -90,11 +90,11 @@
 	
 	var _StationsContainer2 = _interopRequireDefault(_StationsContainer);
 	
-	var _StationContainer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./containers/StationContainer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _StationContainer = __webpack_require__(327);
 	
 	var _StationContainer2 = _interopRequireDefault(_StationContainer);
 	
-	var _App = __webpack_require__(327);
+	var _App = __webpack_require__(329);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -106,7 +106,7 @@
 	
 	var _Songs2 = _interopRequireDefault(_Songs);
 	
-	var _Station = __webpack_require__(334);
+	var _Station = __webpack_require__(328);
 	
 	var _Station2 = _interopRequireDefault(_Station);
 	
@@ -120,9 +120,9 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _albums = __webpack_require__(332);
+	var _albums = __webpack_require__(334);
 	
-	var _artists = __webpack_require__(333);
+	var _artists = __webpack_require__(335);
 	
 	var _playlists = __webpack_require__(285);
 	
@@ -32631,7 +32631,7 @@
 	          { className: 'list-group-item', key: genre },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/stations/' + genre },
+	            { to: '/stations/' + encodeURIComponent(genre) },
 	            genre
 	          )
 	        );
@@ -32650,6 +32650,91 @@
 
 /***/ },
 /* 327 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _reactRedux = __webpack_require__(319);
+	
+	var _Station = __webpack_require__(328);
+	
+	var _Station2 = _interopRequireDefault(_Station);
+	
+	var _utils = __webpack_require__(261);
+	
+	var _player = __webpack_require__(276);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+		return {
+			genreName: ownProps.params.genreName,
+			songs: state.songs.filter(function (song) {
+				return song.genre === ownProps.params.genreName;
+			}).map(_utils.convertSong),
+			currentSong: state.player.currentSong,
+			isPlaying: state.player.isPlaying
+		};
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+		return {
+			toggleOne: function toggleOne(song, list) {
+				dispatch((0, _player.toggleSong)(song, list));
+			}
+		};
+	};
+	
+	var StationContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Station2.default);
+	
+	exports.default = StationContainer;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (props) {
+	  console.log("PROPS", props);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      props.genreName,
+	      ' Station'
+	    ),
+	    _react2.default.createElement(_Songs2.default, {
+	      songs: props.songs,
+	      currentSong: props.currentSong,
+	      isPlaying: props.isPlaying,
+	      toggleOne: props.toggleOne
+	    })
+	  );
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Songs = __webpack_require__(275);
+	
+	var _Songs2 = _interopRequireDefault(_Songs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32680,18 +32765,18 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SidebarContainer = __webpack_require__(328);
+	var _SidebarContainer = __webpack_require__(330);
 	
 	var _SidebarContainer2 = _interopRequireDefault(_SidebarContainer);
 	
-	var _PlayerContainer = __webpack_require__(330);
+	var _PlayerContainer = __webpack_require__(332);
 	
 	var _PlayerContainer2 = _interopRequireDefault(_PlayerContainer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 328 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32710,7 +32795,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _Sidebar = __webpack_require__(329);
+	var _Sidebar = __webpack_require__(331);
 	
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 	
@@ -32761,7 +32846,7 @@
 	exports.default = _class;
 
 /***/ },
-/* 329 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32878,7 +32963,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 330 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32905,7 +32990,7 @@
 	
 	var _player = __webpack_require__(276);
 	
-	var _Player = __webpack_require__(331);
+	var _Player = __webpack_require__(333);
 	
 	var _Player2 = _interopRequireDefault(_Player);
 	
@@ -32981,7 +33066,7 @@
 	exports.default = _class;
 
 /***/ },
-/* 331 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33046,7 +33131,7 @@
 	;
 
 /***/ },
-/* 332 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33087,7 +33172,7 @@
 	};
 
 /***/ },
-/* 333 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33134,56 +33219,6 @@
 	    });
 	  };
 	};
-
-/***/ },
-/* 334 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	exports.default = function (props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      DUMMY_GENRE_NAME,
-	      ' Station'
-	    ),
-	    _react2.default.createElement(_Songs2.default, {
-	      songs: DUMMY_SONGS,
-	      currentSong: DUMMY_CURRENT_SONG,
-	      isPlaying: DUMMY_IS_PLAYING,
-	      toggleOne: DUMMY_TOGGLE_ONE
-	    })
-	  );
-	};
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Songs = __webpack_require__(275);
-	
-	var _Songs2 = _interopRequireDefault(_Songs);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var DUMMY_GENRE_NAME = 'Jazz';
-	var DUMMY_SONGS = [{
-	  id: 1,
-	  name: "A Love Supreme",
-	  genre: "Jazz",
-	  artists: [{ name: "John Coltrane" }]
-	}];
-	var DUMMY_CURRENT_SONG = {};
-	var DUMMY_IS_PLAYING = false;
-	var DUMMY_TOGGLE_ONE = function DUMMY_TOGGLE_ONE() {};
 
 /***/ }
 /******/ ]);
